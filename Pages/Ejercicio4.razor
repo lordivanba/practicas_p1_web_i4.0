@@ -1,0 +1,75 @@
+@page "/ejercicio4"
+<div class="container">
+    <h1 class="display-6 mb-2">Ejercicio 3</h1>
+
+    <h4> Realizar un programa que transforme todas las letras del alfabeto de mayúsculas a
+        minúsculas.</h4>
+
+    <div class="row g-3 mx-5 px-5 my-2">
+        <div>
+            <button class="btn btn-primary btn-lg float-start" @onclick="transformar">Transformar</button>
+        </div>
+    </div>
+    <div class="row">
+        <ul class="col">
+            @foreach (var item in alfabeto)
+            {
+                <li>@item</li>   
+            }
+        </ul>
+        @if(alfabetoList != null){
+            <ul class="listaMayusculas col">
+                @foreach (var item in alfabetoList)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        }
+    </div>
+    @* <div class="alfabetotable">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Alfabeto</th>
+                    @if (alfabetoList == null)
+                    {
+                        <th>Alfabeto en mayúsculas</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in alfabeto)
+                {
+                    <tr>
+                        <td>@item</td>
+                    </tr>
+                }
+                @if (alfabetoList != null)
+                {
+                    @foreach (var item in alfabetoList)
+                    {
+                        <td>@item</td>
+                    }
+                    <tr>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div> *@
+</div>
+
+
+@code {
+    public string[] alfabeto =
+        {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","o","p","q","r","s","t","u","v","w","x","y","z"};
+    List<string>? alfabetoList = new List<string>();
+    
+    void transformar()
+    {
+        alfabetoList.Clear();
+        foreach (var letra in alfabeto)
+        {
+            alfabetoList.Add(letra.ToUpper());
+        }
+    }
+}

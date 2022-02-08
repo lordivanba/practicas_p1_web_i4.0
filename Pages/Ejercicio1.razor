@@ -1,0 +1,59 @@
+@page "/ejercicio1"
+
+<div class="container">
+    <h1 class="display-6 mb-2">Ejercicio 1</h1>
+
+    <h4>En un supermercado se hace una promoción mediante la cual el cliente obtiene un
+        descuento, el descuento depende de un número de dos digito que escoja al lazar. Si el
+        número elegido es menor que 74 el descuento es el 15% sobre el total de compras si es
+        mayor o igual a 74 el descuento es de 20%. Calcula e imprimir el dinero que se le descuenta
+        a un cliente, así como el momento a pagar.</h4>
+
+    <div class="row g-3 mx-5 px-5 my-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" class="form-control form-control-lg" id="total" placeholder="Total de compra" @bind-value="@total">
+                <label for="total">Total de compra</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" class="form-control form-control-lg" id="codigo" placeholder="Codigo" @bind-value="@codigo">
+                <label for="codigo">Codigo de descuento</label>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-lg float-start" @onclick="CalcularDescuento">Calcular Descuento</button>
+        </div>
+    </div>
+
+    @if (totalDescuento != null)
+    {
+        <div class="container my-4">
+            <h3>Descuento obtenido: @descuento%</h3>
+            <h3>Total con descuento aplicado: @totalDescuento</h3>
+        </div>
+    }
+
+</div>
+
+@code {
+    public double? total { get; set; }
+    public int? codigo { get; set; }
+    public double? descuento { get; set; }
+    public double? totalDescuento { get; set; }
+
+    void CalcularDescuento()
+    {
+        if (codigo < 74)
+        {
+            descuento = 15;
+            totalDescuento = total - (total * (descuento / 100));
+        }
+        else if (codigo >= 74)
+        {
+            descuento = 20;
+            totalDescuento = total - (total * (descuento / 100));
+        }
+    }
+}

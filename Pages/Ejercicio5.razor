@@ -1,0 +1,61 @@
+@page "/ejercicio5"
+<div class="container">
+    <h1 class="display-6 mb-2">Ejercicio 5</h1>
+
+    <h4> Realizar un programa que solicite dos números enteros, los ordene en forma ascendente y
+        los imprima.</h4>
+
+    <div class="row g-3 mx-5 px-5 my-2">
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" class="form-control form-control-lg" id="n1" placeholder="a" @bind-value="@n1">
+                <label for="n1">Número 1</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating">
+                <input type="number" class="form-control form-control-lg" id="n2" placeholder="a" @bind-value="@n2">
+                <label for="n2">Número 2</label>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-lg float-start" @onclick="ordenar">Ordenar</button>
+        </div>
+    </div>
+    @if (lista != null)
+    {
+        <div class="container my-4">
+            <h3>@foreach (var item in lista)
+                {
+                    <p>@item,</p>
+                }
+            </h3>
+        </div>
+    }
+
+</div>
+
+
+
+
+@code {
+    public int? n1 { get; set; }
+    public int? n2 { get; set; }
+    List<int?>? lista = new List<int?>();
+
+    void ordenar()
+    {
+        lista.Clear();
+        if (n1 < n2)
+        {
+            lista.Add(n1);
+            lista.Add(n2);
+        }
+        else
+        {
+            lista.Add(n2);
+            lista.Add(n1);
+        }
+
+    }
+}
